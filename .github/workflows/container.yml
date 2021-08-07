@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - "packages/container/**"
+      - 'packages/container/**'
 
 defaults:
   run:
@@ -15,14 +15,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
-    - run: npm install
-    - run: npm run build
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
 
-    - uses: vkgpt11/actions-aws-cli@v1.1
-    - run: aws s3 sync dist s3://${{secrets.AWS_S3_BUCKET_NAME}}/container/latest
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+      - uses: vkgpt11/action-aws-cli@v1.1
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
