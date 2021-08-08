@@ -7,6 +7,7 @@ export default () => {
         <h1>Hi, container</h1>
         <hr />
         <MarketingApp />
+        
     </div>
 }
 
